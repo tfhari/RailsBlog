@@ -1,2 +1,42 @@
-<h1>Heyo Rails!</h1>
+<div class="container bg-gray text-center">
+
+
+  <h1>Tristan's Blog Spot</h1>
+  <p>This site will essentially be a culmination
+    of thoughts, experiences, and ideas I thought
+    were worth more than an Instagram post. Most
+    things I write here will be about Code, Food,
+    Nature, or Music. However I do what I want so
+    buckle up.
+  </p>
+</div>
+
+<div class="container bg-primary text-light text-center">
+  <%= link_to 'My Blog', {controller: 'articles'}, class: "text-light"%>
+</div>
+
+<div class="columns">
+<% @articles = Article.all %>
+<% @articles.each do |article| %>
+  <div class="column gridalax col-4">
+    <%= link_to article, controller: 'articles' do %>
+    <div class="parallax">
+      <div class="parallax-top-left"></div>
+      <div class="parallax-top-right"></div>
+      <div class="parallax-bottom-left"></div>
+      <div class="parallax-bottom-right"></div>
+      <div class="parallax-content">
+        <div class="parallax-front">
+          <h2><%= article.title %></h2>
+        </div>
+        <div class="parallax-back">
+          <%= image_tag("impressionisms.jpg", class: "img-responsive rounded" ) %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+<% end %>
+</div>
+
 <%= link_to 'My Blog', controller: 'articles' %>
