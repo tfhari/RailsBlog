@@ -1,2 +1,104 @@
-<h1>Heyo Rails!</h1>
+<div class="container bg-gray text-center">
+  <h1>Tristan's Blog Spot</h1>
+  <p>This site will essentially be a culmination
+    of thoughts, experiences, and ideas I thought
+    were worth more than an Instagram post. Most
+    things I write here will be about Code, Food,
+    Nature, or Music. However I do what I want so
+    buckle up.
+  </p>
+</div>
+
+<div class="container bg-primary text-light text-center">
+  <%= link_to 'Recent Posts', {controller: 'articles'}, class: "h4 text-light"%>
+</div>
+
+<div class="columns">
+<% @articles = Article.limit(3) %>
+<% @articles.each do |article| %>
+  <div class="column gridalax col-4">
+    <%= link_to article, controller: 'articles' do %>
+    <div class="parallax">
+      <div class="parallax-top-left"></div>
+      <div class="parallax-top-right"></div>
+      <div class="parallax-bottom-left"></div>
+      <div class="parallax-bottom-right"></div>
+      <div class="parallax-content">
+        <div class="parallax-front">
+          <h2><%= article.title %></h2>
+        </div>
+        <div class="parallax-back">
+          <%= image_tag(article.post_image_url, class: "img-responsive rounded" ) %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+<% end %>
+</div>
+
+<div class="timeline pl-2 pt-2">
+  <div class="timeline-item" id="timeline-example-1">
+    <div class="timeline-left">
+      <a class="timeline-icon" href="#timeline-example-1"></a>
+    </div>
+    <div class="timeline-content">
+      <!-- tiles structure-->
+      WebSite Created
+    </div>
+  </div>
+  <%
+    require 'Date'
+    start_date = Date.new(2017, 9, 1)
+    end_date = Date.today
+
+    num_months = end_date.month - start_date.month + 1
+
+    dates = []
+    num_months.times do |count|
+      dates.push(start_date >> count)
+    end
+  %>
+
+  <% dates.each do |date| %>
+  <div class="timeline-item" id="timeline-example-1">
+    <div class="timeline-left">
+      <a class="timeline-icon icon-lg" href="#timeline-example-1"><i class="icon icon-check"></i></a>
+    </div>
+    <div class="timeline-content">
+      <%= date.strftime("%B") %>
+      <%
+        @this_months_posts = Article.where("created_at < ? and created_at > ?", date >> 1, date).pluck(:title)
+        @this_months_posts.each do |post_title|
+      %>
+
+      <p class="tile-title">
+        <p class="tile-subtitle text-gray">
+        <%= post_title %>
+      </p>
+        <!-- Add link to blog post here -->
+      </p>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+  <!--
+  <div class="timeline-item" id="timeline-example-2">
+    <div class="timeline-left">
+      <a class="timeline-icon icon-lg" href="#timeline-example-2">
+        <i class="icon icon-check"></i>
+      </a>
+    </div>
+    <div class="timeline-content">
+
+      <p class="tile-title">The Avengers</p>
+      <p class="tile-subtitle text-gray">Earth's Mightiest Heroes joined forces to take on threats that were too big for any one hero to tackle...</p>
+
+    </div>
+  </div>
+  -->
+</div>
+
+
+
 <%= link_to 'My Blog', controller: 'articles' %>
