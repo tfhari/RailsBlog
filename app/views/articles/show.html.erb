@@ -2,12 +2,14 @@
 <header class="navbar">
   <section class="navbar-section">
     <%= link_to 'Home', {controller: 'welcome'}, class: "btn btn-link"%>
-    <%= link_to 'All Posts', {controller: 'articles'}, class: "btn btn-link"%>
+    <%= link_to 'Posts', {controller: 'articles'}, class: "btn btn-link"%>
+    <a href="#" class="btn btn-link">Archive</a>
   </section>
   <section class="navbar-center">
     <!-- centered logo or brand -->
   </section>
   <section class="navbar-section">
+    <a href="tristanhari.io" class="btn btn-link">Bio</a>
     <a href="twitter.com/tristanhari" class="btn btn-link">Twitter</a>
     <a href="github.com/kptristan24" class="btn btn-link">GitHub</a>
   </section>
@@ -15,20 +17,49 @@
 
 <!--Post Title-->
 <p>
-  <strong>Title:</strong>
-  <%= @article.title %>
+  <div class="article-title col-8 col-mx-auto">
+    <h2><%= @article.title %></h2>
+  </div>
 </p>
 
+<!--Article Body-->
 <p>
-  <strong>Text:</strong>
-  <%= raw @article.text %>
+  <div class="article-content col-8 col-mx-auto">
+    <%= raw @article.text %>
+  </div>
 </p>
 
-<h2>Comments</h2>
-<%= render @article.comments %>
+<div class="panel">
+  <div class="panel-header">
+    <div class="panel-title h6">Comments</div>
+  </div>
+  <div class="panel-nav">
+    <!-- navigation components: tabs, breadcrumbs or pagination -->
+  </div>
+  <div class="panel-body">
+    <!-- contents -->
+    <% @article.comments.each do |comment| %>
+      <div class="tile">
+        <div class="tile-icon">
+          <figure class="avatar">
+            <img src="img/avatar-1.png" alt="Avatar">
+          </figure>
+        </div>
+        <div class="tile-content">
+          <p class="tile-title"><%= comment.commenter %></p>
+          <p class="tile-subtitle"><%= comment.body %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="panel-footer">
+    <!-- buttons or inputs -->
+  </div>
+</div>
 
 <h2>Add a comment:</h2>
 <%= render 'comments/form' %>
+<%= render @article.comments %>
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>
