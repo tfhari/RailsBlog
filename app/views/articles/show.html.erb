@@ -11,7 +11,7 @@
   <section class="navbar-section">
     <a href="tristanhari.io" class="btn btn-link">Bio</a>
     <a href="twitter.com/tristanhari" class="btn btn-link">Twitter</a>
-    <a href="github.com/kptristan24" class="btn btn-link">GitHub</a>
+    <a href="http://github.com/kptristan24" class="btn btn-link">GitHub</a>
   </section>
 </header>
 
@@ -42,7 +42,7 @@
       <div class="tile">
         <div class="tile-icon">
           <figure class="avatar">
-            <img src="img/avatar-1.png" alt="Avatar">
+            <%= image_tag("av#{rand(3)}.png") %>
           </figure>
         </div>
         <div class="tile-content">
@@ -54,12 +54,16 @@
   </div>
   <div class="panel-footer">
     <!-- buttons or inputs -->
+    <h2>Add a comment:</h2>
+    <%= render 'comments/form' %>
   </div>
 </div>
 
+<!--
 <h2>Add a comment:</h2>
 <%= render 'comments/form' %>
 <%= render @article.comments %>
+-->
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>
