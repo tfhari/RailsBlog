@@ -5,7 +5,7 @@
       <section class="navbar-section">
         <%= link_to 'Home', {controller: 'welcome'}, class: "btn btn-link"%>
         <%= link_to 'Posts', {controller: 'articles'}, class: "btn btn-link"%>
-        <a href="#" class="btn btn-link">Archive</a>
+        <%= link_to 'Archive', {controller: 'articles', action:'archive'}, class: "btn btn-link"%>
       </section>
       <section class="navbar-center">
         <!-- centered logo or brand -->
