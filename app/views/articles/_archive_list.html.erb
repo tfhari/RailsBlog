@@ -5,7 +5,7 @@
     </div>
     <div class="timeline-content">
       <!-- tiles structure-->
-      WebSite Created
+      Blog Created
     </div>
   </div>
   <%
@@ -32,9 +32,8 @@
         @this_months_posts = Article.where("created_at < ? and created_at > ?", date >> 1, date).pluck(:title)
         @this_months_posts.each do |post_title|
       %>
-
       <p class="tile-title">
-        <p class="tile-subtitle text-gray">
+        <p class="tile-subtitle">
         <%= post_title %>
       </p>
         <!-- Add link to blog post here -->

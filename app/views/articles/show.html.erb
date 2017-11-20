@@ -1,23 +1,4 @@
-<!--Nav Bar-->
-<section class="section section-header bg-gray">
-  <section class="grid-header container grid-480">
-    <header class="navbar">
-      <section class="navbar-section">
-        <%= link_to 'Home', {controller: 'welcome'}, class: "btn btn-link"%>
-        <%= link_to 'Posts', {controller: 'articles'}, class: "btn btn-link"%>
-        <%= link_to 'Archive', {controller: 'articles', action:'archive'}, class: "btn btn-link"%>
-      </section>
-      <section class="navbar-center">
-        <!-- centered logo or brand -->
-      </section>
-      <section class="navbar-section">
-        <a href="http://tristanhari.io" class="btn btn-link">Bio</a>
-        <a href="http://twitter.com/tristanhari" class="btn btn-link">Twitter</a>
-        <a href="http://github.com/kptristan24" class="btn btn-link">GitHub</a>
-      </section>
-    </header>
-  </section>
-</section>
+<%= render 'layouts/nav' %>
 
 <!--Post Title-->
 <p>
