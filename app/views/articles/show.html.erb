@@ -1,19 +1,4 @@
-<!--Nav Bar-->
-<header class="navbar">
-  <section class="navbar-section">
-    <%= link_to 'Home', {controller: 'welcome'}, class: "btn btn-link"%>
-    <%= link_to 'Posts', {controller: 'articles'}, class: "btn btn-link"%>
-    <a href="#" class="btn btn-link">Archive</a>
-  </section>
-  <section class="navbar-center">
-    <!-- centered logo or brand -->
-  </section>
-  <section class="navbar-section">
-    <a href="tristanhari.io" class="btn btn-link">Bio</a>
-    <a href="twitter.com/tristanhari" class="btn btn-link">Twitter</a>
-    <a href="http://github.com/kptristan24" class="btn btn-link">GitHub</a>
-  </section>
-</header>
+<%= render 'layouts/nav' %>
 
 <!--Post Title-->
 <p>
@@ -29,7 +14,7 @@
   </div>
 </p>
 
-<div class="panel">
+<div class="panel col-7 col-mx-auto">
   <div class="panel-header">
     <div class="panel-title h6">Comments</div>
   </div>

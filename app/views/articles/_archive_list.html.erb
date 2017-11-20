@@ -1,0 +1,45 @@
+<div class="timeline pl-2 pt-2">
+  <div class="timeline-item" id="timeline-example-1">
+    <div class="timeline-left">
+      <a class="timeline-icon" href="#timeline-example-1"></a>
+    </div>
+    <div class="timeline-content">
+      <!-- tiles structure-->
+      Blog Created
+    </div>
+  </div>
+  <%
+    require 'Date'
+    start_date = Date.new(2017, 9, 1)
+    end_date = Date.today
+
+    num_months = end_date.month - start_date.month + 1
+
+    dates = []
+    num_months.times do |count|
+      dates.push(start_date >> count)
+    end
+  %>
+
+  <% dates.each do |date| %>
+  <div class="timeline-item" id="timeline-example-1">
+    <div class="timeline-left">
+      <a class="timeline-icon icon-lg" href="#timeline-example-1"><i class="icon icon-check"></i></a>
+    </div>
+    <div class="timeline-content">
+      <%= date.strftime("%B") %>
+      <%
+        @this_months_posts = Article.where("created_at < ? and created_at > ?", date >> 1, date).pluck(:title)
+        @this_months_posts.each do |post_title|
+      %>
+      <p class="tile-title">
+        <p class="tile-subtitle">
+        <%= post_title %>
+      </p>
+        <!-- Add link to blog post here -->
+      </p>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+</div>
